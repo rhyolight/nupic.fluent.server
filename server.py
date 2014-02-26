@@ -20,22 +20,70 @@
 # http://numenta.org/licenses/
 # ----------------------------------------------------------------------
 
+import os
 import web
 
+from fluent.model import Model
+from fluent.term import Term
+
+
+
 urls = (
-    '/(.*)', 'Hello'
+  r"/([-\w]*)/feed/([-\w]*)", "Feed",
+  r"/([-\w]*)/reset", "Reset",
+  "/", "Home"
 )
 
 
 
-class Hello:
+class Home:
 
 
-  def GET(self, name):
-    if not name:
-      name = 'World'
+  def GET(self):
+    return "Welcome to Fluent!"
 
-    return 'Hello, ' + name + '!'
+
+
+class Feed:
+
+
+  def POST(self, uid, string):
+    model = getModel(uid)
+    term = Term().createFromString(string)
+
+    prediction = model.feedTerm(term)
+    model.save()
+
+    return prediction.closestString()
+
+
+
+class Reset:
+
+
+  def POST(self, uid):
+    model = getModel(uid)
+    model.resetSequence()
+    return ""
+
+
+
+def getModel(uid):
+  modelDir = _getModelDir(uid)
+
+  if not os.path.exists(modelDir):
+    os.makedirs(modelDir)
+
+  model = Model(checkpointDir=modelDir)
+
+  if model.hasCheckpoint():
+    model.load()
+
+  return model
+
+
+def _getModelDir(uid):
+  return "store/models/{0}".format(uid)
 
 
 
