@@ -64,6 +64,7 @@ class Reset:
   def POST(self, uid):
     model = getModel(uid)
     model.resetSequence()
+    model.save()
     return ""
 
 
