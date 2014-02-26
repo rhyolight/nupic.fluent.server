@@ -26,6 +26,8 @@ import web
 from fluent.model import Model
 from fluent.term import Term
 
+from lib.limited_size_dict import LimitedSizeDict
+
 
 
 urls = (
@@ -33,6 +35,8 @@ urls = (
   r"/([-\w]*)/reset", "Reset",
   "/", "Home"
 )
+
+modelCache = LimitedSizeDict(size_limit=25)
 
 
 
@@ -70,6 +74,9 @@ class Reset:
 
 
 def getModel(uid):
+  if uid in modelCache:
+    return modelCache[uid]
+
   modelDir = _getModelDir(uid)
 
   if not os.path.exists(modelDir):
@@ -80,6 +87,7 @@ def getModel(uid):
   if model.hasCheckpoint():
     model.load()
 
+  modelCache[uid] = model
   return model
 
 
