@@ -20,12 +20,12 @@ Run:
 
 Then you can use `curl` to test out the API:
 
-    => curl http://localhost:9090/45nar8/feed/cat --data ""
-    => curl http://localhost:9090/45nar8/feed/likes --data ""
-    => curl http://localhost:9090/45nar8/feed/milk --data ""
-    => curl http://localhost:9090/45nar8/reset --data ""
+    => curl http://localhost:9090/_models/m123/feed/cat --data ""
+    => curl http://localhost:9090/_models/m123/feed/likes --data ""
+    => curl http://localhost:9090/_models/m123/feed/milk --data ""
+    => curl http://localhost:9090/_models/m123/reset --data ""
     =>
-    => curl http://localhost:9090/45nar8/feed/cat --data ""
+    => curl http://localhost:9090/_models/m123/feed/cat --data ""
     likes
-    => curl http://localhost:9090/45nar8/feed/likes --data ""
+    => curl http://localhost:9090/_models/m123/feed/likes --data ""
     milk

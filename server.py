@@ -31,9 +31,10 @@ from utils.limited_size_dict import LimitedSizeDict
 
 
 urls = (
-  r"/([-\w]*)/feed/([-\w]*)", "Feed",
-  r"/([-\w]*)/reset", "Reset",
-  "/", "Home"
+  "/", "Home",
+
+  r"/_models/([-\w]*)/feed/([-\w]*)", "Feed",
+  r"/_models/([-\w]*)/reset", "Reset"
 )
 
 modelCache = LimitedSizeDict(size_limit=25)
