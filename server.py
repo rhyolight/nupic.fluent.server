@@ -26,7 +26,7 @@ import web
 from fluent.model import Model
 from fluent.term import Term
 
-from lib.limited_size_dict import LimitedSizeDict
+from utils.limited_size_dict import LimitedSizeDict
 
 
 
