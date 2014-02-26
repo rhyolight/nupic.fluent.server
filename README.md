@@ -11,3 +11,9 @@ Requirements:
 Install other requirements:
 
     pip install -r requirements.txt
+
+## Usage
+
+    python server.py 9090
+
+Then visit `http://localhost:9090`.
