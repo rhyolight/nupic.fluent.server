@@ -76,12 +76,14 @@ function scrollToBottom() {
 /* Utility functions */
 
 function buildHistoryRow(term) {
-	return $("<tr><td class='term'>" +
-	          term + "</td><td class='prediction'>" +
+	return $("<ul class='history-item small-block-grid-2'>" +
+	          "<li class='term'>" + term + "</li>" +
+	          "<li class='prediction'>" +
 	          "<img src='/static/img/loading.gif' />" +
-	          "</td></tr>");
+	          "</li>" +
+	          "</li>");
 }
 
 function buildHistoryRowEmpty() {
-	return $("<tr><td></td></tr>");
+	return $("<hr>");
 }

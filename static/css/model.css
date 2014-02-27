@@ -41,15 +41,23 @@
 	text-align: center;
 }
 
-.centered {
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .scrollable-y {
 	overflow-y: auto;
 }
 
 .white-background {
 	background: white;
+}
+
+li.term, li.prediction {
+	padding: 0 10px;
+}
+
+.term {
+	text-align: right;
+}
+
+.prediction {
+	text-align: left;
+	color: green;
 }
