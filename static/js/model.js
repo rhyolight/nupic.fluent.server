@@ -1,6 +1,12 @@
 /* Main */
 
 positionBottom();
+
+$(window).resize(function() {
+	positionBottom();
+	scrollToBottom();
+});
+
 $("#input").focus();
 
 $("#input").keydown(function(e) {
@@ -61,8 +67,8 @@ function positionBottom() {
 }
 
 function scrollToBottom() {
-	mainContent = $("#main-content");
-	mainContent.scrollTop(mainContent.prop("scrollHeight"));
+	mainWindow = $("#main-window");
+	mainWindow.scrollTop(mainWindow.prop("scrollHeight"));
 }
 
 /* Utility functions */
