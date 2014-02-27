@@ -38,10 +38,10 @@ You can use `curl` to test out the API:
 
 * Feed a term into the model and get a prediction
 
-    POST /_models/{model_id}/feed/{term}
+        POST /_models/{model_id}/feed/{term}
 
-    Returns: predicted_term
+        Returns: predicted_term
 
 * Reset sequence on model
 
-    POST /_models/{model_id}/reset
+        POST /_models/{model_id}/reset
