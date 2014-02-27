@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
 # Copyright (C) 2014, Numenta, Inc.  Unless you have purchased from
@@ -20,16 +19,22 @@
 # http://numenta.org/licenses/
 # ----------------------------------------------------------------------
 
+import os
 import web
 
-from api import model_api
+from fluent.model import Model
+from fluent.term import Term
+
+from utils.limited_size_dict import LimitedSizeDict
 
 
 
 urls = (
-  "/", "Home",
-  "/_models", model_api.app
+  r"/([-\w]*)/feed/([-\w]*)", "Feed",
+  r"/([-\w]*)/reset", "Reset"
 )
+
+modelCache = LimitedSizeDict(size_limit=25)
 
 
 
@@ -41,6 +46,52 @@ class Home:
 
 
 
-if __name__ == "__main__":
-  app = web.application(urls, globals())
-  app.run()
+class Feed:
+
+
+  def POST(self, uid, string):
+    model = getModel(uid)
+    term = Term().createFromString(string)
+
+    prediction = model.feedTerm(term)
+    model.save()
+
+    return prediction.closestString()
+
+
+
+class Reset:
+
+
+  def POST(self, uid):
+    model = getModel(uid)
+    model.resetSequence()
+    model.save()
+    return ""
+
+
+
+def getModel(uid):
+  if uid in modelCache:
+    return modelCache[uid]
+
+  modelDir = _getModelDir(uid)
+
+  if not os.path.exists(modelDir):
+    os.makedirs(modelDir)
+
+  model = Model(checkpointDir=modelDir)
+
+  if model.hasCheckpoint():
+    model.load()
+
+  modelCache[uid] = model
+  return model
+
+
+def _getModelDir(uid):
+  return "store/models/{0}".format(uid)
+
+
+
+app = web.application(urls, globals())
