@@ -6,7 +6,7 @@
 
 .main-content {
 	top: 0;
-	bottom: 70px;
+	bottom: 120px;
 	position: fixed;
 }
 
@@ -21,20 +21,12 @@
 	position: absolute;
 }
 
-.margin-bottom {
-	margin-bottom: 90px;
-}
-
 .full-width {
 	width: 100%;
 }
 
 .full-height {
 	height: 100%;
-}
-
-.margin-bottom {
-	margin-bottom: 85px;
 }
 
 .text-centered {
