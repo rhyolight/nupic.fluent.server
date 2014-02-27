@@ -1,1 +1,1 @@
-alert(window.MODEL_ID);
+alert(window.MODEL_ID)

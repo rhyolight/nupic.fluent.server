@@ -40,7 +40,7 @@ class Home:
 
 
   def GET(self):
-    return render.index()
+    return render.base(render.index())
 
 
 
@@ -48,7 +48,7 @@ class Model:
 
 
   def GET(self, modelId):
-    return render.model(modelId)
+    return render.base(render.model(modelId))
 
 
 
