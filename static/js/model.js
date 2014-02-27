@@ -37,18 +37,16 @@ function feed(term) {
 	// Strip invalid characters
 	term = term.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
 	
-	var row = buildHistoryRow(term);
-	$("#history").append(row);
+	var row = appendHistoryRow(term);
 
 	var url = "/_models/" + window.MODEL_ID + "/feed/" + term;
 	$.postq("api", url, function(data) {
-		updateHistoryRow(row, data);
+		updateHistoryRow(row, data[0]);
 	});
 }
 
 function reset() {
-	row = buildHistoryRowEmpty();
-	$("#history").append(row);
+	var row = appendHistoryRowEmpty();
 
 	var url = "/_models/" + window.MODEL_ID + "/reset";
 	$.postq("api", url, function(data) {});
@@ -56,8 +54,25 @@ function reset() {
 
 /* DOM functions */
 
+function appendHistoryRow(term) {
+	row = $("<ul class='history-item small-block-grid-2'>" +
+	        "<li class='term'>" + term + "</li>" +
+	        "<li class='prediction'>" +
+	        "<img src='/static/img/loading.gif' />" +
+	        "</li>" +
+	        "</ul>");
+	$("#history").append(row);
+	return row;
+}
+
+function appendHistoryRowEmpty() {
+	row = $("<hr>");
+	$("#history").append(row);
+	return row;
+}
+
 function updateHistoryRow(row, prediction) {
-	row.children(".prediction").text(prediction);
+	row.children(".prediction").text(prediction.term.string);
 }
 
 function positionBottom() {
@@ -74,19 +89,4 @@ function positionBottom() {
 function scrollToBottom() {
 	mainWindow = $("#main-window");
 	mainWindow.scrollTop(mainWindow.prop("scrollHeight"));
-}
-
-/* Utility functions */
-
-function buildHistoryRow(term) {
-	return $("<ul class='history-item small-block-grid-2'>" +
-	          "<li class='term'>" + term + "</li>" +
-	          "<li class='prediction'>" +
-	          "<img src='/static/img/loading.gif' />" +
-	          "</li>" +
-	          "</ul>");
-}
-
-function buildHistoryRowEmpty() {
-	return $("<hr>");
 }
