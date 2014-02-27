@@ -84,7 +84,7 @@ function buildHistoryRow(term) {
 	          "<li class='prediction'>" +
 	          "<img src='/static/img/loading.gif' />" +
 	          "</li>" +
-	          "</li>");
+	          "</ul>");
 }
 
 function buildHistoryRowEmpty() {

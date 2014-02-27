@@ -41,8 +41,16 @@
 	background: white;
 }
 
+hr {
+	margin: 10px 0;
+}
+
 li.term, li.prediction {
 	padding: 0 10px;
+}
+
+.heading {
+	font-weight: bold;
 }
 
 .term {
