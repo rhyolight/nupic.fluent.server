@@ -19,6 +19,7 @@
 # http://numenta.org/licenses/
 # ----------------------------------------------------------------------
 
+import json
 import os
 import web
 
@@ -56,12 +57,13 @@ class Feed:
     prediction = model.feedTerm(term)
     model.save()
 
-    return [{
+    web.header('Content-Type', 'application/json')
+    return json.dumps([{
       "type": "term",
       "term": {
         "string": prediction.closestString()
       }
-    }]
+    }])
 
 
 
@@ -72,9 +74,11 @@ class Reset:
     model = getModel(uid)
     model.resetSequence()
     model.save()
-    return [{
+
+    web.header('Content-Type', 'application/json')
+    return json.dumps([{
       "type": "reset"
-    }]
+    }])
 
 
 
