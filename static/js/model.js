@@ -1,5 +1,6 @@
 /* Main */
 
+positionBottom();
 $("#input").focus();
 
 $("#input").keydown(function(e) {
@@ -16,6 +17,9 @@ $("#input").keydown(function(e) {
 
 		$(this).val("");
 		e.preventDefault();
+
+		positionBottom();
+		scrollToBottom();
 	}
 });
 
@@ -43,6 +47,22 @@ function reset() {
 
 function updateHistoryRow(row, prediction) {
 	row.children(".prediction").text(prediction);
+}
+
+function positionBottom() {
+	mainContent = $("#main-content");
+
+	position = mainContent.parent().height() -
+	           mainContent.height() -
+	           20;  // padding
+	position = Math.max(0, position);
+
+	mainContent.offset({"top": position});
+}
+
+function scrollToBottom() {
+	mainContent = $("#main-content");
+	mainContent.scrollTop(mainContent.prop("scrollHeight"));
 }
 
 /* Utility functions */

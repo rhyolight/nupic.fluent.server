@@ -4,14 +4,14 @@
 	box-sizing: border-box;
 }
 
-.fixed-bottom {
-	bottom: 0;
-	position: fixed;
-}
-
 .main-content {
 	top: 0;
 	bottom: 70px;
+	position: fixed;
+}
+
+.fixed-bottom {
+	bottom: 0;
 	position: fixed;
 }
 
