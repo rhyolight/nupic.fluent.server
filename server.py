@@ -28,6 +28,7 @@ from api import model_api
 
 urls = (
   "/", "Home",
+  "/([-\w]*)", "Model",
   "/_models", model_api.app
 )
 
@@ -40,6 +41,14 @@ class Home:
 
   def GET(self):
     return render.index()
+
+
+
+class Model:
+
+
+  def GET(self, modelId):
+    return render.model(modelId)
 
 
 
