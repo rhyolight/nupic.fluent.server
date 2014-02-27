@@ -20,7 +20,9 @@ Run:
 
 Then visit `http://localhost:9090`.
 
-Or, you can use `curl` to test out the API:
+## API
+
+You can use `curl` to test out the API:
 
     => curl http://localhost:9090/_models/m123/feed/cat --data ""
     => curl http://localhost:9090/_models/m123/feed/likes --data ""
@@ -31,3 +33,15 @@ Or, you can use `curl` to test out the API:
     likes
     => curl http://localhost:9090/_models/m123/feed/likes --data ""
     milk
+
+### Reference
+
+* Feed a term into the model and get a prediction
+
+    POST /_models/{model_id}/feed/{term}
+
+    Returns: predicted_term
+
+* Reset sequence on model
+
+    POST /_models/{model_id}/reset
