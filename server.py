@@ -43,6 +43,11 @@ class Home:
     return render.base(render.index())
 
 
+  def POST(self):
+    data = web.input()
+    raise web.seeother('/' + data['modelId'])
+
+
 
 class Model:
 
