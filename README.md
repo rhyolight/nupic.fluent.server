@@ -56,6 +56,8 @@ _Note: You can use any alphanumeric string as the model ID, and a model will be 
             ...
         ]
 
+    _Note: Currently, only one prediction is returned._
+
 * Reset sequence on model
 
         POST /_models/{model_id}/reset
