@@ -18,7 +18,9 @@ Run:
 
     python server.py 9090
 
-Then you can use `curl` to test out the API:
+Then visit `http://localhost:9090`.
+
+Or, you can use `curl` to test out the API:
 
     => curl http://localhost:9090/_models/m123/feed/cat --data ""
     => curl http://localhost:9090/_models/m123/feed/likes --data ""
