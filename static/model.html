@@ -7,13 +7,7 @@ $def with (modelId)
     <h2 class="text-centered">Fluent</h2>
 
     <table class="centered">
-      <tbody>
-        $for i in range(3):
-          <tr>
-            <td>Word</td>
-            <td>Prediction</td>
-          </tr>
-      </tbody>
+      <tbody id="history"></tbody>
     </table>
   </div>
 </div>
@@ -22,7 +16,7 @@ $def with (modelId)
   <form>
     <div class="row">
       <div class="large-4 small-centered columns">
-        <input type="text" placeholder="Type here..."/>
+        <input id="input" type="text" placeholder="Type here..."/>
       </div>
     </div>
   </form>
