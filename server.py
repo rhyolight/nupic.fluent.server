@@ -31,13 +31,15 @@ urls = (
   "/_models", model_api.app
 )
 
+render = web.template.render('static/')
+
 
 
 class Home:
 
 
   def GET(self):
-    return "Welcome to Fluent!"
+    return render.index()
 
 
 
