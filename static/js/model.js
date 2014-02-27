@@ -1,5 +1,7 @@
 /* Main */
 
+reset();
+
 positionBottom();
 
 $(window).resize(function() {
