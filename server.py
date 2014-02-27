@@ -20,6 +20,8 @@
 # http://numenta.org/licenses/
 # ----------------------------------------------------------------------
 
+import re
+
 import web
 
 from api import model_api
@@ -45,7 +47,9 @@ class Home:
 
   def POST(self):
     data = web.input()
-    raise web.seeother('/' + data['modelId'])
+    modelId = data['modelId']
+    modelId = re.sub(r'[^a-zA-Z0-9]', '', modelId)  # only alphanumeric
+    raise web.seeother('/' + modelId)
 
 
 
