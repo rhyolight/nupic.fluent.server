@@ -34,7 +34,7 @@ You can use `curl` to test out the API:
     => curl http://localhost:9090/_models/m123/feed/likes --data ""
     milk
 
-_Note: You can use any alphanumeric string as the model ID. In the above example, we used `m123`._
+_Note: You can use any alphanumeric string as the model ID, and a model will be created if it doesn't already exist. In the above example, we used `m123`._
 
 ### Reference
 
