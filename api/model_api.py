@@ -56,7 +56,12 @@ class Feed:
     prediction = model.feedTerm(term)
     model.save()
 
-    return prediction.closestString()
+    return [{
+      "type": "term",
+      "term": {
+        "string": prediction.closestString()
+      }
+    }]
 
 
 
@@ -67,7 +72,9 @@ class Reset:
     model = getModel(uid)
     model.resetSequence()
     model.save()
-    return ""
+    return [{
+      "type": "reset"
+    }]
 
 
 
