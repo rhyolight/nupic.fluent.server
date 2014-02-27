@@ -31,9 +31,8 @@ You can use `curl` to test out the API:
     curl http://localhost:9090/_models/m123/feed/milk --data ""
     # => [{'term': {'string': ''}, 'type': 'term'}]
     curl http://localhost:9090/_models/m123/reset --data ""
-    # => [{'type': 'reset'}]
 
-    => curl http://localhost:9090/_models/m123/feed/cat --data ""
+    curl http://localhost:9090/_models/m123/feed/cat --data ""
     # => [{'term': {'string': 'likes'}, 'type': 'term'}]
     curl http://localhost:9090/_models/m123/feed/likes --data ""
     # => [{'term': {'string': 'milk'}, 'type': 'term'}]
@@ -61,9 +60,3 @@ _Note: You can use any alphanumeric string as the model ID, and a model will be 
 * Reset sequence on model
 
         POST /_models/{model_id}/reset
-
-    Returns: List of one dictionary
-
-        [
-            {'type': 'reset'}
-        ]

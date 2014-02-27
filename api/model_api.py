@@ -74,11 +74,7 @@ class Reset:
     model = getModel(uid)
     model.resetSequence()
     model.save()
-
-    web.header('Content-Type', 'application/json')
-    return json.dumps([{
-      "type": "reset"
-    }])
+    return ""
 
 
 
