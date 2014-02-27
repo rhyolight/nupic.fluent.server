@@ -34,6 +34,9 @@ $("#input").keydown(function(e) {
 /* API functions */
 
 function feed(term) {
+	// Strip invalid characters
+	term = term.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
+	
 	var row = buildHistoryRow(term);
 	$("#history").append(row);
 
