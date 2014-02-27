@@ -51,7 +51,7 @@ _Note: You can use any alphanumeric string as the model ID, and a model will be 
         [
             {
                 'type': 'term',
-                'term': {'string': term_string}
+                'term': {'string': 'cat'}
             },
             ...
         ]
