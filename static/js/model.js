@@ -22,14 +22,24 @@ $("#input").keydown(function(e) {
 /* API functions */
 
 function feed(term) {
-	$("#history").append(buildHistoryRow(term));
+	var row = buildHistoryRow(term);
+	$("#history").append(row);
+
+	var url = "/_models/" + window.MODEL_ID + "/feed/" + term;
+	$.postq("feed", url, function(data) {
+		updateHistoryRow(row, data);
+	});
 }
 
 /* Utility functions */
 
 function buildHistoryRow(term) {
-	return $("<tr id='term-" + term.hashCode() + "'><td class='term'>" +
+	return $("<tr><td class='term'>" +
 	          term + "</td><td class='prediction'>" +
 	          "<img src='/static/img/loading.gif' />" +
 	          "</td></tr>");
+}
+
+function updateHistoryRow(row, prediction) {
+	row.children(".prediction").text(prediction);
 }
